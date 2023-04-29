@@ -1,0 +1,202 @@
+ @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+}
+
+:root {
+    --light-cyan: hsla(193, 38%, 86%);
+    --neon-green: hsl(150, 100%, 66%);
+    --neon-green-trans: hsla(150, 100%, 66%, 0.8);
+    --greyish-blue: hsl(217, 19%, 38%);
+    --dark-grayish-blue: hsla(217, 19%, 24%, 0.8);
+    --dark-blue: hsl(218, 23%, 16%);
+}
+
+html {
+    --r540: calc((540 / var(--base) * 1rem));
+    --r38: calc((38 / var(--base) * 1rem));
+    --r28: calc((28 / var(--base) * 1rem));
+    --r20: calc((20 / var(--base) * 1rem));
+    --r18: calc((18 / var(--base) * 1rem));
+    --r15: calc((15 / var(--base) * 1rem));
+    --r13: calc((13 / var(--base) * 1rem));
+    --r11: calc((11 / var(--base) * 1rem));
+    --base: 16;
+}
+
+body,
+main,
+.advice-container {
+    display: grid;
+    place-items: center;
+}
+
+body {
+    background-color: var(--dark-blue);
+    height: 100vh;
+}
+
+body::before { /*For toggling only*/
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(./images/bg-img.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+body.active::before { /*For toggling only*/
+    opacity:1 ;
+}
+
+.advice-container {
+    background-color: var(--dark-grayish-blue);
+    border-radius: var(--r15) ;
+    box-sizing: border-box;
+    height: auto;
+    width: var(--r540);
+    padding: 3rem 3rem 2rem 3rem;
+    position: relative;
+}
+
+.advice-container.active { /*For toggling only*/
+    filter: brightness(150%) grayscale(100%);
+}
+
+#advice-id {
+    color: var(--neon-green);
+    font-size: var(--r13);
+    letter-spacing: 0.25rem;
+    line-height: var(--r18);
+    text-transform: uppercase;
+}
+
+#advice-quote {
+    color: var(--light-cyan);
+    font-size: var(--r28);
+    letter-spacing: -0.3px;
+    line-height: var(--r38);
+    padding-top: 1.5rem;
+    text-align: center;
+}
+
+#pattern-divider-d {
+    padding: 2.5rem 0;
+}
+
+#pattern-divider-m {
+    display: none;
+}
+
+#button-dice {
+    background-color: var(--neon-green);
+    border: none;
+    border-radius: 50%;
+    height: 4rem;
+    width: 4rem;
+    padding: var(--r20);
+    position: absolute;
+    bottom: -2rem;
+    left: calc(50% - 2rem);
+    transition: all 0.2s ease-in;
+}
+
+#button-dice:is(:hover) {
+    box-shadow: 0 0 30px var(--neon-green-trans);
+}
+
+/* Background-img theme toggle */
+.toggle-switch {
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+}
+
+input[type="checkbox"] {
+    width: 0;
+    height: 0;
+    visibility: hidden;
+}
+
+#toggle-label {
+    border: 2px solid var(--light-cyan);
+    border-radius: 1rem;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    height: 2rem;
+    width: 4rem;
+    position: relative;
+    transition: 0.5s;
+    box-shadow: 0 0 10px var(--greyish-blue);
+}
+
+#toggle-label::after {
+    content: "";
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: var(--neon-green);
+    position: absolute;
+    border-radius: 0.75rem;
+    top: calc(50% - 0.75rem);
+    left: 0.2rem;
+    transition: 0.5s;
+}
+
+input:checked + #toggle-label:after {
+    background-color: var(--light-cyan);
+    transform: translateX(125%);
+}
+
+/* .attribution { 
+    font-size: 11px; 
+    text-align: center; 
+}
+
+.attribution a { 
+    color: hsl(228, 45%, 44%); 
+} */
+
+@media screen and (max-width:480px) {
+    .advice-container {
+        width: 90%;
+        padding: 3rem 1.5rem 2rem 1.5rem;
+    }
+
+    #advice-id {
+        font-size: var(--r11);
+        letter-spacing: 3.5px;
+        line-height: var(--r15);
+    }
+    
+    #advice-quote {
+        font-size: 1.5rem;
+        letter-spacing: -0.26px;
+        line-height: 2rem;
+    }
+
+    #pattern-divider-d {
+        display: none;
+    }
+
+    #pattern-divider-m {
+        display: block;
+        padding: 1.5rem 0 2rem 0;
+        width: 100%; 
+    }
+
+    /* Background-img theme toggle */
+    .toggle-switch {
+        top: 1rem;
+        right: 1rem;
+    }
+}
