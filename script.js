@@ -1,12 +1,12 @@
 // For toggling between original and bg-img mode
-$(document).ready(() => {
+$(function() {
     $("#toggle").click(() => {
       $("body").toggleClass("active");
       $(".advice-container").toggleClass("active");
     });
 });
 
-$(document).ready(() => {
+$(function() {
   $('#button-dice').click(() => {
     $.ajax({
       url: 'https://api.adviceslip.com/advice',
